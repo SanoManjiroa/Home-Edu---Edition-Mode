@@ -1,0 +1,34 @@
+# HomeEdu (Homedu) — Django MVP
+
+## Run (Windows)
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
+
+## Phone preview (hotspot/Wi‑Fi)
+```bash
+python manage.py runserver 0.0.0.0:8000
+```
+Then open `http://<PC_IP>:8000` on your phone (same network).
+
+If needed for local dev, set `ALLOWED_HOSTS = ['*']` in `config/settings.py`.
+
+## Admin
+- `/admin/` — add Grades, Subjects, Topics, Courses, Lessons, Vacancies, Parent content, Contact info.
+
+## URLs
+- `/` landing (your original design kept)
+- `/dashboard/` dashboard (login required)
+- `/auth/register/` register
+- `/auth/login/` login
+- `/fanlar/` maktab: grades → subjects → topics
+- `/kurslar/` courses
+- `/ota-onalar/` parents content
+- `/vakansiyalar/` vacancies
+- `/aloqa/` contact

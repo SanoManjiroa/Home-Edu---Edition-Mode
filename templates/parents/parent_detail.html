@@ -9,11 +9,12 @@
   <a class="btn small" href="{% url 'parents:list' %}">← Ro‘yxat</a>
 </div>
 
-{% if item.video_url %}
-  <div class="card" style="margin-top: 16px;">
-    <div style="border-radius:16px; overflow:hidden; border:1px solid rgba(0,0,0,.10);">
-      <iframe style="width:100%; aspect-ratio: 16/9; border:0;" src="{{ item.video_url }}" allowfullscreen></iframe>
-    </div>
+{% if item.video_file %}
+  <div style="margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid rgba(0,0,0,.10); background:#000;">
+    <video controls preload="metadata"
+           style="width:100%; display:block; max-height:520px; background:#000;">
+      <source src="{{ item.video_file.url }}">
+    </video>
   </div>
 {% endif %}
 {% endblock %}

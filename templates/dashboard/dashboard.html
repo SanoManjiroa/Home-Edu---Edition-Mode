@@ -1,14 +1,14 @@
 {% extends "site_base.html" %}
 {% load static %}
-{% block title %}Dashboard — HomeEdu{% endblock %}
+{% block title %}Profil — HomeEdu{% endblock %}
 {% block content %}
 <div class="row" style="margin-top: 8px;">
   <div>
-    <h1 class="h1">Dashboard</h1>
+    <h1 class="h1">Profil</h1>
     <p class="sub">Xush kelibsiz, {{ request.user.full_name|default:request.user.email }}.</p>
   </div>
   <div style="display:flex; gap:10px; flex-wrap:wrap;">
-    <a class="btn small" href="{% url 'accounts:profile' %}">Profil</a>
+    <a class="btn small" href="{% url 'accounts:profile' %}">Profil bo'limi</a>
     <a class="btn small dark" href="{% url 'accounts:logout' %}">Chiqish</a>
   </div>
 </div>

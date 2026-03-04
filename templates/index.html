@@ -30,7 +30,7 @@
       <div class="profile">
         <img class="flag" src="{% static 'img/flag.jpg' %}" alt="UZ flag" />
         {% if request.user.is_authenticated %}
-          <a class="profil" style="font-size:20px; margin-top:-12px;margin-left:10%; text-decoration:none; color:var(--text);" href="{% url 'core:dashboard' %}">Dashboard</a>
+          <a class="profil" style="font-size:20px; margin-top:-12px;margin-left:10%; text-decoration:none; color:var(--text);" href="{% url 'core:dashboard' %}">Profil</a>
         {% else %}
           <a class="profil" style="font-size:20px; margin-top:-12px;margin-left:10%; text-decoration:none; color:var(--text);" href="{% url 'accounts:login' %}">Kirish</a>
         {% endif %}

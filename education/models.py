@@ -25,7 +25,7 @@ class Subject(models.Model):
 class Topic(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name="topics")
     title = models.CharField(max_length=200)
-    video_url = models.URLField(blank=True, help_text="YouTube embed URL: https://www.youtube.com/embed/VIDEO_ID")
+    video_file = models.FileField(upload_to="videos/topics/", blank=True, null=True)
     pdf_file = models.FileField(upload_to="topic_pdfs/", blank=True, null=True)
     text = models.TextField(blank=True)
     order = models.PositiveIntegerField(default=1)

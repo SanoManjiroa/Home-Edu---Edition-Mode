@@ -13,14 +13,15 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+
 class CourseLesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="lessons")
     title = models.CharField(max_length=200)
-    video_url = models.URLField(blank=True)
     pdf_file = models.FileField(upload_to="course_pdfs/", blank=True, null=True)
     text = models.TextField(blank=True)
     order = models.PositiveIntegerField(default=1)
     is_published = models.BooleanField(default=True)
+    video_file = models.FileField(upload_to="videos/courses/", blank=True, null=True)
 
     class Meta:
         ordering = ["course", "order", "title"]

@@ -10,11 +10,14 @@
 </div>
 
 <div class="card" style="margin-top: 16px;">
-  {% if topic.video_url %}
-    <div style="border-radius:16px; overflow:hidden; border:1px solid rgba(0,0,0,.10);">
-      <iframe style="width:100%; aspect-ratio: 16/9; border:0;" src="{{ topic.video_url }}" allowfullscreen></iframe>
-    </div>
-  {% endif %}
+{% if topic.video_file %}
+  <div style="margin-top:16px; border-radius:16px; overflow:hidden; border:1px solid rgba(0,0,0,.10); background:#000;">
+    <video controls preload="metadata"
+           style="width:100%; display:block; max-height:520px; background:#000;">
+      <source src="{{ topic.video_file.url }}">
+    </video>
+  </div>
+{% endif %}
 
   {% if topic.text %}
     <div style="margin-top:14px; line-height: 1.7;">{{ topic.text|linebreaks }}</div>

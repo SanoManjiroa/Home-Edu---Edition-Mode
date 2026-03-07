@@ -13,7 +13,6 @@ urlpatterns = [
     path("fanlar/", include("education.urls")),
     path("kurslar/", include("courses.urls")),
     path("ota-onalar/", include("parents_content.urls")),
-    path("vakansiyalar/", include("vacancies.urls")),
     path("aloqa/", include("contact.urls")),
 ]
 

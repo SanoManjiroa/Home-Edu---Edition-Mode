@@ -70,7 +70,7 @@
     <div class="grid" style="margin-top: 10px;">
       <a class="btn primary" href="{% url 'education:grades' %}">Maktab (1–11 sinf)</a>
       <a class="btn" href="{% url 'courses:list' %}">Kurslar</a>
-      <a class="btn" href="{% url 'vacancies:list' %}">Vakansiyalar</a>
+      <a class="btn" href="{% url 'courses:list' %}">Vakansiyalar</a>
       <a class="btn" href="{% url 'contact:contact' %}">Aloqa</a>
     </div>
 
@@ -78,7 +78,7 @@
       <div class="label">Top vakansiyalar</div>
       <div class="grid" style="margin-top: 10px;">
         {% for v in top_vacancies %}
-          <a class="card linklike" href="{% url 'vacancies:detail' v.id %}">
+          <a class="card linklike" href="{% url 'courses:detail' v.id %}">
             <div class="row">
               <div style="font-weight:800;">{{ v.title }}</div>
               <span class="badge">{{ v.location }}</span>

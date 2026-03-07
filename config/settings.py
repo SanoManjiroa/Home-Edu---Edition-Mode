@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'education',
     'courses',
     'parents_content',
-    'vacancies',
     'contact'
 ]
 

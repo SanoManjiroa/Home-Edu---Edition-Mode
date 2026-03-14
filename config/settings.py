@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #
 # # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret")
 DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = ["*"]
 
@@ -90,19 +90,33 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-DATABASES = {
-    "default": dj_database_url.config(
-        default=os.environ.get("postgresql://irodabonu:OxpG7OT8yQkC4nkrajB5SJdn3JPbhrFl@dpg-d6o01ufkijhs739uj4eg-a/home_edu_db"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
+#     "default": dj_database_url.config(
+#         default=os.environ.get("postgresql://irodabonu:OxpG7OT8yQkC4nkrajB5SJdn3JPbhrFl@dpg-d6o01ufkijhs739uj4eg-a/home_edu_db"),
+#         conn_max_age=600,
+#         ssl_require=True
+#     )
 # }
+
+if os.environ.get("RENDER") == "TRUE":
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.environ.get("DATABASE_URL"),
+            conn_max_age=600,
+            ssl_require=True  # Required for Render Postgres external connection
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "Home_edu_edition_mode_render_connect",
+            "USER": "irodabonu",
+            "PASSWORD": "OxpG7OT8yQkC4nkrajB5SJdn3JPbhrFl",
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
+    }
 
 
 # Password validation
@@ -141,21 +155,21 @@ USE_TZ = True
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    BASE_DIR / "static"
 ]
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR / 'media'
-# DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
